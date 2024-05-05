@@ -1,31 +1,30 @@
-import axios from "axios";
+import httpRequest from "./httpRequest";
 
 const login = async (email, password) => {
-  try {
-    const response = await axios.post(
-      "http://localhost:8000/api/v1/employee/login/",
-      {
-        email,
-        password,
-      }
-    );
-    return response.data;
-  } catch (error) {
-    // Xử lý lỗi ở đây nếu cần
-    console.error("Error during login:", error);
-    throw error; // Chuyển tiếp lỗi để xử lý ở nơi gọi hàm login
-  }
+  const res = await httpRequest.post("employee/login/", {
+    email,
+    password,
+  });
+  return res;
 };
 
-const register = async (account) => {
-  try {
-    const response = await axios.post("employee/signup/", account);
-    return response.data;
-  } catch (error) {
-    console.error("Error during login:", error);
-    throw error; // Chuyển tiếp lỗi để xử lý ở nơi gọi hàm login
-  }
+const signup = async (account) => {
+  const res = await httpRequest.post("employee/register/", account);
+  return res;
 };
 
-const authService = { login, register };
+const recruiter_signup = async (data) => {
+  const res = await httpRequest.post("recruiter/register/", data);
+  return res;
+};
+
+const verify_email = async (email, otp) => {
+  const res = await httpRequest.post("employee/verify-email/", {
+    email,
+    otp,
+  });
+  return res;
+};
+
+const authService = { login, signup, recruiter_signup, verify_email };
 export default authService;

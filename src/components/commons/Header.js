@@ -29,6 +29,7 @@ function Header() {
     dispatch(logout());
   };
   useLayoutEffect(() => {
+    console.log(user_info);
     if (user_info) {
       setAvatar(user_info.avatar_url);
       setFirstName(user_info.account.first_name);

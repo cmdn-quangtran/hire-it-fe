@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import authService from "../services/authService";
+import { handleEmail } from "../utils/handleEmail";
 import jwtDecode from "jwt-decode";
-
 export const login = createAsyncThunk(
-  "users/login/",
+  "users/login/                          ",
   async (user, { rejectWithValue }) => {
     const { email, password } = user;
     try {
@@ -24,6 +24,67 @@ export const login = createAsyncThunk(
     }
   }
 );
+
+export const signup = createAsyncThunk(
+  "users/register",
+  async (account, { rejectWithValue }) => {
+    try {
+      account.role = 1;
+      const res = await authService.signup(account);
+      if (handleEmail(res.data.email) && res.status === 200) {
+        return res;
+      } else {
+        return rejectWithValue(res.message);
+      }
+    } catch (error) {
+      return rejectWithValue("Sign up Fail");
+    }
+  }
+);
+
+export const recruiter_signup = createAsyncThunk(
+  "recruiters/register",
+  async (account, { rejectWithValue }) => {
+    try {
+      const data = {
+        company_name: account["company_name"],
+        address: account["address"],
+        account: {
+          email: account["email"],
+          password: account["password"],
+          first_name: account["first_name"],
+          last_name: account["last_name"],
+          role: 2,
+        },
+      };
+      const res = await authService.recruiter_signup(data);
+      if (handleEmail(res.data.email) && res.status === 200) {
+        return res;
+      } else {
+        return rejectWithValue(res.message);
+      }
+    } catch (error) {
+      return rejectWithValue("Sign up Fail");
+    }
+  }
+);
+
+export const verify_email = createAsyncThunk(
+  "users/confirm_email",
+  async (account, { rejectWithValue }) => {
+    try {
+      const { email, otp } = account;
+      const res = await authService.verify_email(email, otp);
+      if (res.status === 400) {
+        return rejectWithValue(res);
+      } else {
+        return res;
+      }
+    } catch (error) {
+      return rejectWithValue("Verify Fail");
+    }
+  }
+);
 const Information = (access_token) => {
   if (access_token) {
     const decodedToken = jwtDecode(access_token);
@@ -31,6 +92,7 @@ const Information = (access_token) => {
   }
   return null;
 };
+
 let accountString = null;
 let user = null;
 try {
@@ -86,11 +148,47 @@ const userSlice = createSlice({
       localStorage.setItem("account", null);
       state.isLoading = false;
     });
+    builder.addCase(signup.fulfilled, (state, action) => {
+      state.verifyEmail = action.payload.data.email;
+      state.isLoading = false;
+    });
+    builder.addCase(signup.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(signup.rejected, (state, action) => {
+      state.isLoading = false;
+    });
+    builder.addCase(recruiter_signup.fulfilled, (state, action) => {
+      state.verifyEmail = action.payload.data.email;
+      state.isLoading = false;
+    });
+    builder.addCase(recruiter_signup.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(recruiter_signup.rejected, (state, action) => {
+      state.isLoading = false;
+    });
+    builder.addCase(verify_email.fulfilled, (state, action) => {
+      state.account = action.payload.data;
+      localStorage.setItem("account", JSON.stringify(action.payload.data));
+      state.verifyEmail = action.payload.data.email;
+      state.user = Information(action.payload.data?.access_token);
+      state.isAdmin =
+        Information(action.payload.data?.access_token)?.role === 2;
+    });
+    builder.addCase(verify_email.rejected, (state, action) => {
+      state.account = null;
+      state.user = null;
+      localStorage.setItem("account", null);
+    });
   },
 });
 
+export const selectUser = (state) => state.auth.user;
 export const selectIsLoading = (state) => state.auth.isLoading;
 export const selectAccount = (state) => state.auth.account;
+export const selectAccessToken = (state) => state.auth.account.access_token;
+export const selectVerifyEmail = (state) => state.auth.verifyEmail;
 export const selectIsAdmin = (state) => state.auth.isAdmin;
 export const { logout, setAccount } = userSlice.actions;
 export default userSlice.reducer;

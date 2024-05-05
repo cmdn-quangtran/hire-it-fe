@@ -1,3 +1,4 @@
+import store from "./store/index";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -7,7 +8,6 @@ import "./styles/sass/index.scss";
 import "bootstrap/dist/css/bootstrap.css";
 import { Provider } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import store from "./store/index";
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
