@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, makeStyles, Avatar, Grid } from "@material-ui/core";
+import { Typography, makeStyles, Grid } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   aboutContainer: {
@@ -44,11 +44,11 @@ function About() {
     <div className={`${classes.aboutContainer} about`}>
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <Avatar
+          {/* <Avatar
             alt="Avatar"
             src="https://res.cloudinary.com/dq6avgw6n/image/upload/v1688060777/6f38bd12f72619784037_kqkgay.jpg"
             className={classes.avatar}
-          />
+          /> */}
         </Grid>
         <Grid item xs>
           <Typography variant="body1" className="about-content">
