@@ -57,6 +57,6 @@ const resumeSlice = createSlice({
     });
   },
 });
-export const selectIsLoading = (state) => state.resume ? state.resume.isLoading : false;
+export const selectIsLoading = (state) => state.resume.isLoading;
 
 export default resumeSlice.reducer;

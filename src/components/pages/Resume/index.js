@@ -5,11 +5,19 @@ import { Document, Page, pdfjs } from "react-pdf";
 import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
 import NavigateNextIcon from "@material-ui/icons/NavigateNext";
 import { useDispatch, useSelector } from "react-redux";
-import { deactive_resume, selectIsLoading, upload_resume } from "../../../store/ResumeSlice";
+import {
+  deactive_resume,
+  selectIsLoading,
+  upload_resume,
+} from "../../../store/ResumeSlice";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import { toast } from "react-toastify";
 import SpinnerLoading from "../../commons/SpinnerLoading";
-import { get_information, selectIsActive, selectUserInfo } from "../../../store/UserSlice";
+import {
+  get_information,
+  selectIsActive,
+  selectUserInfo,
+} from "../../../store/UserSlice";
 import { useNavigate } from "react-router-dom";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -17,9 +25,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 const Resume = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log("object selectIsLoading", useSelector(selectIsLoading))
+  console.log("object selectIsLoading", useSelector(selectIsLoading));
   const loading = useSelector(selectIsLoading);
-  console.log("aaaaaaaa", loading)
   const is_active = useSelector(selectIsActive);
   const user_info = useSelector(selectUserInfo);
   const [file, setFile] = useState(user_info?.pdf_file);
@@ -157,15 +164,17 @@ const Resume = () => {
                 >
                   Submit
                 </Button>
-                { is_active &&<Button
-                  className="resume-button turnoff-button"
-                  variant="contained"
-                  component="span"
-                  startIcon={<PowerSettingsNewIcon />}
-                  onClick={handleTurnOff}
-                >
-                  Turn Off
-                </Button>}
+                {is_active && (
+                  <Button
+                    className="resume-button turnoff-button"
+                    variant="contained"
+                    component="span"
+                    startIcon={<PowerSettingsNewIcon />}
+                    onClick={handleTurnOff}
+                  >
+                    Turn Off
+                  </Button>
+                )}
               </>
             )}
           </label>
