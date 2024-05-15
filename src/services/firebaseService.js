@@ -15,6 +15,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const updateUsersInConversations = (userId, name, avatar) => {
+  console.log("updateUsersInConversations");
   const conversationsRef = firebase.database().ref("conversations");
 
   return conversationsRef

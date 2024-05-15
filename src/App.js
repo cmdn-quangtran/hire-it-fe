@@ -13,6 +13,9 @@ import ConfirmSignUp from "./components/pages/SignUp/confirmSignUp";
 import TurnOnJob from "./components/pages/Jobs/TurnOnJob";
 import SearchJob from "./components/pages/Jobs/SearchJob";
 import Jobs from "./components/pages/Jobs";
+import UploadJobs from "./components/pages/UploadJobs";
+import UploadFormJob from "./components/pages/UploadJobs/UploadFormJob";
+import SearchCandidate from "./components/pages/Candidate/SearchCandidate";
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
             <Route path="search" element={<SearchJob />} />
             <Route path="create" element={<SearchJob />} />
           </Route>
+          <Route path="recruiter/upload-jobs" element={<UploadJobs />} />
+          <Route path="recruiter/create-jobs" element={<UploadFormJob />} />
+          <Route path="candidates/search" element={<SearchCandidate />}></Route>
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<SignUp />}>

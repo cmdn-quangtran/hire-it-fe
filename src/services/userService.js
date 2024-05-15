@@ -41,6 +41,8 @@ const upload_employee_profile = async (data) => {
       },
     }
   );
+  // ý tui là hấn không trả về res
+  console.log("0---------------------", res);
   return res;
 };
 
@@ -60,6 +62,8 @@ const upload_recruiter_profile = async (data) => {
       },
     }
   );
+
+  // nó vẫn update được nhưng không trả về ý
   return res;
 };
 
