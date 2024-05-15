@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import userService from "../services/userService";
+import firebaseService from "../services/firebaseService";
 
 export const get_information = createAsyncThunk(
-  "users/get_information",
+  "user/get_information",
   async (_, { rejectWithValue }) => {
     try {
       const res = await userService.get_information();
@@ -40,50 +41,24 @@ export const find_job = createAsyncThunk(
   }
 );
 
-export const get_all_candidate = createAsyncThunk(
-  "recruiter/get_all_candidate",
-  async (_, { rejectWithValue }) => {
-    try {
-      const res = await userService.get_all_candidate();
-      return res;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue("Access denied! Please try again.");
-    }
-  }
-);
-
-export const upload_employee_profile = createAsyncThunk(
-  "user/upload_employee_profile",
-  async (data, { rejectWithValue }) => {
-    try {
-      const res = await userService.upload_employee_profile(data);
-      return res;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue("Access denied! Please try again.");
-    }
-  }
-);
-
-export const upload_recruiter_profile = createAsyncThunk(
-  "user/upload_recruiter_profile",
-  async (data, { rejectWithValue }) => {
-    try {
-      const res = await userService.upload_recruiter_profile(data);
-      return res;
-    } catch (error) {
-      console.log(error);
-      return rejectWithValue("Access denied! Please try again.");
-    }
-  }
-);
-
 export const verify_cv = createAsyncThunk(
   "employee/verify_cv",
   async (data, { rejectWithValue }) => {
     try {
       const res = await userService.verify_cv(data);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue("Access denied! Please try again.");
+    }
+  }
+);
+
+export const get_all_candidate = createAsyncThunk(
+  "recruiter/get_all_candidate",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await userService.get_all_candidate();
       return res;
     } catch (error) {
       console.log(error);
@@ -110,6 +85,34 @@ export const send_email_with_cv = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await userService.send_email_with_cv(data);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue("Access denied! Please try again.");
+    }
+  }
+);
+
+export const upload_employee_profile = createAsyncThunk(
+  "user/upload_employee_profile",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await userService.upload_employee_profile(data);
+      console.log("------------------", res);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return rejectWithValue("Access denied! Please try again.");
+    }
+  }
+);
+
+export const upload_recruiter_profile = createAsyncThunk(
+  "user/upload_recruiter_profile",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await userService.upload_recruiter_profile(data);
+      console.log("------------------", res);
       return res;
     } catch (error) {
       console.log(error);
@@ -153,7 +156,12 @@ const userSlice = createSlice({
     builder.addCase(upload_employee_profile.fulfilled, (state, action) => {
       state.isLoading = false;
       state.user_infor = action.payload.data;
-      // state.file = action.payload.data.pdf_file;
+      state.file = action.payload.data.pdf_file;
+      firebaseService.updateUsersInConversations(
+        state.user_infor.account.id,
+        `${state.user_infor?.account?.first_name} ${state.user_infor?.account?.last_name}`,
+        state.user_infor.avatar_url
+      );
     });
     builder.addCase(upload_recruiter_profile.pending, (state, action) => {
       state.isLoading = true;
@@ -166,6 +174,11 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user_infor = action.payload.data;
       state.file = action.payload.data.pdf_file;
+      firebaseService.updateUsersInConversations(
+        state.user_infor.account.id,
+        `${state.user_infor?.account?.first_name} ${state.user_infor?.account?.last_name}`,
+        state.user_infor.avatar_url
+      );
     });
     builder.addCase(get_active.pending, (state, action) => {
       state.isLoading = true;

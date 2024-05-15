@@ -26,5 +26,6 @@ const verify_email = async (email, otp) => {
   return res;
 };
 
-const authService = { login, signup, recruiter_signup, verify_email };
+const authService = { login, signup, verify_email, recruiter_signup };
+
 export default authService;

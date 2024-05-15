@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter, Outlet } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Login from "./components/pages/Login";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
@@ -19,17 +19,16 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<BaseContainer />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
+          <Route path="" element={<Home />} />
           <Route path="home" element={<Home />} />
+          <Route path="about" element={<About />} />
           <Route path="resume" element={<Resume />} />
           <Route path="profile" element={<Profile />} />
-          <Route path="*" element={<Outlet />} />
-        </Route>
-        <Route path="jobs" element={<Jobs />}>
-          <Route path="turn-on" element={<TurnOnJob />} />
-          <Route path="search" element={<SearchJob />} />
-          <Route path="create" element={<SearchJob />} />
+          <Route path="jobs" element={<Jobs />}>
+            <Route path="turn-on" element={<TurnOnJob />} />
+            <Route path="search" element={<SearchJob />} />
+            <Route path="create" element={<SearchJob />} />
+          </Route>
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="register" element={<SignUp />}>

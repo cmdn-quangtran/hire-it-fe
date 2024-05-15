@@ -28,38 +28,40 @@ const verify_cv = async (data) => {
 };
 
 const upload_employee_profile = async (data) => {
-    const formData = new FormData();
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
-    formData.append("avatar_img", data.avatar_img);
-    const res = await  httpRequest.post('user/upload-employee-profile/', 
+  const formData = new FormData();
+  formData.append("first_name", data.first_name);
+  formData.append("last_name", data.last_name);
+  formData.append("avatar_img", data.avatar_img);
+  const res = await httpRequest.post(
+    "user/upload-employee-profile/",
     formData,
-        {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }
-    ) ;
-    return res;
-}
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res;
+};
 
 const upload_recruiter_profile = async (data) => {
-    const formData = new FormData();
-    formData.append("first_name", data.first_name);
-    formData.append("last_name", data.last_name);
-    formData.append("avatar_img", data.avatar_img);
-    formData.append("company_name", data.company_name);
-    formData.append("address", data.address);
-    const res = await  httpRequest.post('user/upload-recruiter-profile/', 
+  const formData = new FormData();
+  formData.append("first_name", data.first_name);
+  formData.append("last_name", data.last_name);
+  formData.append("avatar_img", data.avatar_img);
+  formData.append("company_name", data.company_name);
+  formData.append("address", data.address);
+  const res = await httpRequest.post(
+    "user/upload-recruiter-profile/",
     formData,
-        {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }
-    ) ;
-    return res;
-}
+    {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    }
+  );
+  return res;
+};
 
 const find_job = async () => {
   const res = await httpRequest.get("employee/find-job/");

@@ -7,8 +7,8 @@ import jobReducer from "./JobSlice";
 export default configureStore({
   reducer: {
     auth: authReducer,
-    user: userReducer,
-    job: jobReducer,
     resume: resumeReducer,
+    user: userReducer,
+    job: jobReducer,  
   },
 });
