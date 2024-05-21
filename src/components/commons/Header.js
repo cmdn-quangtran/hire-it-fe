@@ -38,10 +38,10 @@ function Header() {
   return (
     <Navbar collapseOnSelect expand="lg">
       <Container className="navbar-text">
-        <Navbar.Brand href="/home" className="logo-navbar-brand"></Navbar.Brand>
-        <Navbar.Brand href="/home" className="navbar-text">
+        {/* <Navbar.Brand href="/home" className="logo-navbar-brand"></Navbar.Brand> */}
+        {/* <Navbar.Brand href="/home" className="navbar-text">
           Hire IT
-        </Navbar.Brand>
+        </Navbar.Brand> */}
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">

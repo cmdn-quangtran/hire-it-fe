@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   ListItem,
   ListItemSecondaryAction,
-  Button,
   Typography,
   ListItemAvatar,
-} from "@material-ui/core";
+} from "@mui/material";
+import Button from "@mui/material/Button";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MailIcon from "@mui/icons-material/Mail";
@@ -160,20 +160,20 @@ const CandidateItem = ({ candidate, onCandidateClick }) => {
             color="secondary"
             onClick={(e) => {
               e.preventDefault();
-            //   firebaseService.initializeConversation(
-            //     candidate.id,
-            //     user_info.account.id,
-            //     candidate.name,
-            //     candidate.avatar_url,
-            //     candidate.email,
-            //     user_info.account.first_name +
-            //       " " +
-            //       user_info.account.last_name,
-            //     user_info.avatar_url,
-            //     user_info.account.email
-            //   );
-            //   navigate(`/chat/${candidate.id}_${user_info.account.id}`);
-            //   e.stopPropagation();
+              //   firebaseService.initializeConversation(
+              //     candidate.id,
+              //     user_info.account.id,
+              //     candidate.name,
+              //     candidate.avatar_url,
+              //     candidate.email,
+              //     user_info.account.first_name +
+              //       " " +
+              //       user_info.account.last_name,
+              //     user_info.avatar_url,
+              //     user_info.account.email
+              //   );
+              //   navigate(`/chat/${candidate.id}_${user_info.account.id}`);
+              //   e.stopPropagation();
             }}
           >
             Message
@@ -218,7 +218,7 @@ const CandidateItem = ({ candidate, onCandidateClick }) => {
               <Button
                 className="btn-cancel"
                 variant="contained"
-                color="default"
+                // color="default"
                 onClick={handleCloseModalJob}
               >
                 Cancel

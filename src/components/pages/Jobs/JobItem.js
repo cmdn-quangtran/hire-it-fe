@@ -4,12 +4,13 @@ import {
   ListItemSecondaryAction,
   Button,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import MailIcon from "@mui/icons-material/Mail";
 import { useDispatch, useSelector } from "react-redux";
+import firebaseService from "../../../services/firebaseService";
 import {
   selectIsLoading,
   selectUserInfo,
@@ -80,6 +81,25 @@ const JobItem = ({ job, onJobClick }) => {
               SendCV(job, user_info);
               e.stopPropagation();
               const chatId = `${user_info.account.id}_${job.id}`;
+              await firebaseService.initializeChat(
+                user_info.account.id,
+                job.id,
+                user_info.account.first_name +
+                  " " +
+                  user_info.account.last_name,
+                user_info.avatar_url,
+                user_info.account.email,
+                job.name,
+                job.avatar_url,
+                job.email
+              );
+              await navigate(`/chat/${user_info.account.id}_${job.id}`);
+              firebaseService.employeeSendMessage(
+                chatId,
+                user_info,
+                `Sent your job application for ${job.job_name} position.`,
+                "message"
+              );
             }}
           >
             Apply

@@ -1,5 +1,5 @@
-import { Container, Typography, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { Container, Typography, Button } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -204,7 +204,7 @@ function TurnOnJob() {
                     <Button
                       className="btn-cancel"
                       variant="contained"
-                      color="default"
+                      // color="default"
                       onClick={handleCloseModal}
                     >
                       Cancel

@@ -1,9 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import { Button, Typography, IconButton } from "@material-ui/core";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import { Button, Typography, IconButton } from "@mui/material";
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { Document, Page, pdfjs } from "react-pdf";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deactive_resume,

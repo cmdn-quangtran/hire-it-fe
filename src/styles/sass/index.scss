@@ -1,3 +1,5 @@
+// base scss
+@import "base/_layout";
 @import "base/_variables";
 
 @import "components/_home";
@@ -16,3 +18,5 @@
 @import "components/_uploadjobs";
 @import "components/_searchcandidate";
 @import "components/_modalcandidate";
+@import "components/_message";
+@import "components/_verifyinformation";    

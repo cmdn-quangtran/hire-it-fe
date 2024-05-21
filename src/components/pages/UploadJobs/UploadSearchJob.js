@@ -6,7 +6,7 @@ import {
   Input,
   Select,
   MenuItem,
-} from "@material-ui/core";
+} from "@mui/material";
 import { PROVINCES } from "../../../constants/locations";
 import {
   get_all_jobs_owner,

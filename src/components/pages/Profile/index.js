@@ -1,13 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import {
-  Button,
-  Container,
-  Grid,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { Button, Container, Grid, TextField, Typography , Avatar} from "@mui/material";
 import { Form } from "react-bootstrap";
-import Avatar from "@material-ui/core/Avatar";
 import { useDispatch, useSelector } from "react-redux";
 import {
   get_information,

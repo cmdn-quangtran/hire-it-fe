@@ -7,7 +7,7 @@ import {
   Select,
   MenuItem,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { PROVINCES } from "../../../constants/locations";
 import ListJob from "./ListJob";
 import {
@@ -23,7 +23,6 @@ function SearchJob() {
   const [selectedProvince, setSelectedProvince] = useState("");
   const dispatch = useDispatch();
 
-  console.log("loading;0--------------", useSelector(selectIsLoading));
   const loading = useSelector(selectIsLoading);
   const data = useSelector(selectJobs);
   const handleSearch = (event) => {

@@ -12,7 +12,7 @@ import { recruiter_signup, selectIsLoading } from "../../../store/AuthSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SpinnerLoading from "../../commons/SpinnerLoading";
-import { Grid } from "@material-ui/core";
+import { Grid } from "@mui/material";
 function RecruiterSignUp() {
   const loading = useSelector(selectIsLoading);
   const [email, setEmail] = useState("");

@@ -1,5 +1,5 @@
 import React from "react";
-import { ListItem, Typography } from "@material-ui/core";
+import { ListItem, Typography } from "@mui/material";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import MenuOption from "./MenuOption";
 

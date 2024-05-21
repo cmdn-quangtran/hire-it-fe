@@ -6,7 +6,7 @@ import {
   Typography,
   ListItemSecondaryAction,
   Link,
-} from "@material-ui/core";
+} from "@mui/material";
 import PDFViewer from "../Jobs/PDFViewer";
 import BiotechIcon from "@mui/icons-material/Biotech";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -221,7 +221,7 @@ const ModalCandidate = ({ candidate, open, handleClose }) => {
                 <Button
                   className="btn-cancel"
                   variant="contained"
-                  color="default"
+                  // color="default"
                   onClick={handleCloseModalJob}
                 >
                   Cancel

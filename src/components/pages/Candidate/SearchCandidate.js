@@ -7,7 +7,7 @@ import {
   Select,
   MenuItem,
   Typography,
-} from "@material-ui/core";
+} from "@mui/material";
 import { PROVINCES } from "../../../constants/locations";
 import ListCandidate from "./ListCandidate";
 import { useDispatch, useSelector } from "react-redux";

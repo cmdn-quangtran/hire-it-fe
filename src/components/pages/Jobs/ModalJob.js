@@ -6,7 +6,7 @@ import {
   Typography,
   ListItemSecondaryAction,
   Link,
-} from "@material-ui/core";
+} from "@mui/material";
 import PDFViewer from "./PDFViewer";
 import BadgeIcon from "@mui/icons-material/Badge";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
