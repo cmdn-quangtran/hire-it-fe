@@ -51,7 +51,7 @@ function Login() {
         <div className="login-container">
           <div className="form">
             <Form onSubmit={handle_submit} className="login-form">
-              <h1>Login HireIT</h1>
+              <h1>Login</h1>
               <Form.Group
                 as={Row}
                 className="mb-3"
