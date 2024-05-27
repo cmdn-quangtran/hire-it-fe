@@ -37,17 +37,17 @@ export const update_interview_status = createAsyncThunk(
   }
 );
 
-// export const get_interview_by_email = createAsyncThunk(
-//   "interview/get-interview-by-email",
-//   async (data, { rejectWithValue }) => {
-//     try {
-//       const res = await interviewService.get_interview_by_email(data);
-//       return res;
-//     } catch (error) {
-//       return rejectWithValue("No interviews found.");
-//     }
-//   }
-// );
+export const get_interview_by_email = createAsyncThunk(
+  "interview/get-interview-by-email",
+  async (data, { rejectWithValue }) => {
+    try {
+      const res = await interviewService.get_interview_by_email(data);
+      return res;
+    } catch (error) {
+      return rejectWithValue("No interviews found.");
+    }
+  }
+);
 
 const initialState = {
   isLoading: false,
@@ -89,22 +89,22 @@ const interviewSlice = createSlice({
     builder.addCase(update_interview_status.fulfilled, (state, action) => {
       state.isLoading = false;
     });
-    // builder.addCase(get_interview_by_email.pending, (state, action) => {
-    //   state.isLoading = true;
-    //   state.events_by_email = [];
-    // });
-    // builder.addCase(get_interview_by_email.rejected, (state, action) => {
-    //   state.isLoading = false;
-    //   state.events_by_email = [];
-    // });
-    // builder.addCase(get_interview_by_email.fulfilled, (state, action) => {
-    //   state.isLoading = false;
-    //   state.events_by_email = action.payload.data;
-    // });
+    builder.addCase(get_interview_by_email.pending, (state, action) => {
+      state.isLoading = true;
+      state.events_by_email = [];
+    });
+    builder.addCase(get_interview_by_email.rejected, (state, action) => {
+      state.isLoading = false;
+      state.events_by_email = [];
+    });
+    builder.addCase(get_interview_by_email.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.events_by_email = action.payload.data;
+    });
   },
 });
 export const selectIsLoading = (state) => state.interview.isLoading;
 export const selectIsInterview = (state) => state.interview.events;
-// export const selectIsInterviewByEmail = (state) =>
-//   state.interview.events_by_email;
+export const selectIsInterviewByEmail = (state) =>
+  state.interview.events_by_email;
 export default interviewSlice.reducer;

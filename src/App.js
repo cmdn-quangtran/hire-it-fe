@@ -17,6 +17,7 @@ import UploadJobs from "./components/pages/UploadJobs";
 import UploadFormJob from "./components/pages/UploadJobs/UploadFormJob";
 import SearchCandidate from "./components/pages/Candidate/SearchCandidate";
 import ChatApp from "./components/pages/Chat";
+import Calendar from "./components/pages/Calendar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
@@ -32,6 +33,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="resume" element={<Resume />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="calendar" element={<Calendar />} />
             <Route path="chat" element={<ChatApp />}>
               <Route path=":chatId" element={<ChatApp />} />
             </Route>

@@ -59,17 +59,12 @@ function SendMessage() {
       title: "My resume",
       link_access: user_info.pdf_file,
     };
-    firebaseService.employeeSendMessage(chatId, user_info, file, "file");
+    firebaseService.pushSendMessage(chatId, user_info, file, "file");
   };
 
   const sendMessage = () => {
     if (message.trim() !== "") {
-      firebaseService.employeeSendMessage(
-        chatId,
-        user_info,
-        message,
-        "message"
-      );
+      firebaseService.pushSendMessage(chatId, user_info, message, "message");
       setMessage("");
     }
   };
@@ -181,7 +176,7 @@ function SendMessage() {
                           title: selectedItem?.job_name,
                           link_access: selectedItem?.pdf_upload,
                         };
-                        firebaseService.employeeSendMessage(
+                        firebaseService.pushSendMessage(
                           chatId,
                           user_info,
                           link,

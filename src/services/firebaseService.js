@@ -16,7 +16,18 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const employeeSendMessage = async (chatId, user_info, message, type) => {
+const sendMessage = (chatId, avatar, message) => {
+  const messagesRef = firebase.database().ref(`chats/${chatId}/messages`);
+  const newMessageRef = messagesRef.push();
+  const uniqueId = uuidv4();
+  newMessageRef.set({
+    sender_id: uniqueId,
+    avatar: avatar,
+    message: message,
+  });
+};
+
+const pushSendMessage = async (chatId, user_info, message, type) => {
   const messagesRef = firebase.database().ref(`chats/${chatId}/messages`);
   const messages = messagesRef.push();
   const messageData = {
@@ -122,49 +133,47 @@ const initializeChat = async (
   }
 };
 
-const updateUsersInConversations = (userId, name, avatar) => {
+const updateUsersInChat = (userId, name, avatar) => {
   console.log("updateUsersInConversations");
-  const conversationsRef = firebase.database().ref("conversations");
+  const chatsRef = firebase.database().ref("chats");
 
-  return conversationsRef
+  return chatsRef
     .once("value")
     .then((snapshot) => {
-      const conversationsData = snapshot.val();
-      if (conversationsData) {
-        const updatedConversations = {};
+      const chatData = snapshot.val();
+      if (chatData) {
+        const updatedChats = {};
 
-        Object.entries(conversationsData).forEach(
-          ([conversationId, conversation]) => {
-            const updatedUsers = { ...conversation.users };
-            const updatedMessages = { ...conversation.messages };
+        Object.entries(chatData).forEach(([chatId, chat]) => {
+          const updatedUsers = { ...chat.users };
+          const updatedMessages = { ...chat.messages };
 
-            if (userId in updatedUsers) {
-              updatedUsers[userId] = {
-                ...updatedUsers[userId],
+          if (userId in updatedUsers) {
+            updatedUsers[userId] = {
+              ...updatedUsers[userId],
+              name: name,
+              avatar: avatar,
+            };
+          }
+          Object.entries(updatedMessages).forEach(([messageId, message]) => {
+            if (message.senderId === userId) {
+              updatedMessages[messageId] = {
+                ...message,
                 name: name,
                 avatar: avatar,
               };
             }
-            Object.entries(updatedMessages).forEach(([messageId, message]) => {
-              if (message.senderId === userId) {
-                updatedMessages[messageId] = {
-                  ...message,
-                  name: name,
-                  avatar: avatar,
-                };
-              }
-            });
-            updatedConversations[conversationId] = {
-              ...conversation,
-              users: updatedUsers,
-              messages: updatedMessages,
-            };
-          }
-        );
+          });
+          updatedChats[chatId] = {
+            ...chat,
+            users: updatedUsers,
+            messages: updatedMessages,
+          };
+        });
 
         // Update the conversations in the database
-        return conversationsRef
-          .set(updatedConversations)
+        return chatsRef
+          .set(updatedChats)
           .then(() => {
             console.log("Users updated in conversations successfully.");
           })
@@ -265,9 +274,10 @@ const updateStatusInterview = async (chatId, interviewId, newStatus) => {
 };
 
 const firebaseService = {
-  updateUsersInConversations,
+  sendMessage,
+  updateUsersInChat,
   initializeChat,
-  employeeSendMessage,
+  pushSendMessage,
   findManyChat,
   findChatById,
   updateStatusInterview,

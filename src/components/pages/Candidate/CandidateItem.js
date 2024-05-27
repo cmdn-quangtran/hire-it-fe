@@ -17,7 +17,7 @@ import {
   selectUserInfo,
   send_email_with_job,
 } from "../../../store/UserSlice";
-// import firebaseService from "../../../services/firebaseService";
+import firebaseService from "../../../services/firebaseService";
 import { useNavigate } from "react-router-dom";
 import { selectJobsOwner } from "../../../store/JobSlice";
 import SpinnerLoading from "../../commons/SpinnerLoading";
@@ -89,23 +89,23 @@ const CandidateItem = ({ candidate, onCandidateClick }) => {
     SendJob(selectedItem, candidate);
     setModalOpenJob(false);
     const chatId = `${candidate.id}_${user_info.account.id}`;
-    // await firebaseService.initializeConversation(
-    //   candidate.id,
-    //   user_info.account.id,
-    //   candidate.name,
-    //   candidate.avatar_url,
-    //   candidate.email,
-    //   user_info.account.first_name + " " + user_info.account.last_name,
-    //   user_info.avatar_url,
-    //   user_info.account.email
-    // );
-    // await navigate(`/chat/${candidate.id}_${user_info.account.id}`);
-    // firebaseService.sendMessage1(
-    //   chatId,
-    //   user_info,
-    //   `Send invitation for ${selectedItem.job_name} position.`,
-    //   "message"
-    // );
+    await firebaseService.initializeChat(
+      candidate.id,
+      user_info.account.id,
+      candidate.name,
+      candidate.avatar_url,
+      candidate.email,
+      user_info.account.first_name + " " + user_info.account.last_name,
+      user_info.avatar_url,
+      user_info.account.email
+    );
+    await navigate(`/chat/${candidate.id}_${user_info.account.id}`);
+    firebaseService.pushSendMessage(
+      chatId,
+      user_info,
+      `Send invitation for ${selectedItem.job_name} position.`,
+      "message"
+    );
   };
   return loading ? (
     <SpinnerLoading loading={loading} />
@@ -160,20 +160,20 @@ const CandidateItem = ({ candidate, onCandidateClick }) => {
             color="secondary"
             onClick={(e) => {
               e.preventDefault();
-              //   firebaseService.initializeConversation(
-              //     candidate.id,
-              //     user_info.account.id,
-              //     candidate.name,
-              //     candidate.avatar_url,
-              //     candidate.email,
-              //     user_info.account.first_name +
-              //       " " +
-              //       user_info.account.last_name,
-              //     user_info.avatar_url,
-              //     user_info.account.email
-              //   );
-              //   navigate(`/chat/${candidate.id}_${user_info.account.id}`);
-              //   e.stopPropagation();
+                firebaseService.initializeChat(
+                  candidate.id,
+                  user_info.account.id,
+                  candidate.name,
+                  candidate.avatar_url,
+                  candidate.email,
+                  user_info.account.first_name +
+                    " " +
+                    user_info.account.last_name,
+                  user_info.avatar_url,
+                  user_info.account.email
+                );
+                navigate(`/chat/${candidate.id}_${user_info.account.id}`);
+                e.stopPropagation();
             }}
           >
             Message

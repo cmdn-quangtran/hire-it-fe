@@ -94,7 +94,7 @@ const JobItem = ({ job, onJobClick }) => {
                 job.email
               );
               await navigate(`/chat/${user_info.account.id}_${job.id}`);
-              firebaseService.employeeSendMessage(
+              firebaseService.pushSendMessage(
                 chatId,
                 user_info,
                 `Sent your job application for ${job.job_name} position.`,

@@ -14,7 +14,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import PhoneIcon from "@mui/icons-material/Phone";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import { selectUserInfo, send_email_with_job } from "../../../store/UserSlice";
-// import firebaseService from "../../../api-service/firebaseService";
+import firebaseService from "../../../services/firebaseService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectJobsOwner } from "../../../store/JobSlice";
@@ -84,23 +84,23 @@ const ModalCandidate = ({ candidate, open, handleClose }) => {
     setModalOpenJob(false);
     handleClose();
     const chatId = `${candidate.id}_${user_info.account.id}`;
-    // await firebaseService.initializeConversation(
-    //   candidate.id,
-    //   user_info.account.id,
-    //   candidate.name,
-    //   candidate.avatar_url,
-    //   candidate.email,
-    //   user_info.account.first_name + " " + user_info.account.last_name,
-    //   user_info.avatar_url,
-    //   user_info.account.email
-    // );
-    // await navigate(`/chat/${candidate.id}_${user_info.account.id}`);
-    // firebaseService.sendMessage1(
-    //   chatId,
-    //   user_info,
-    //   `Send invitation for ${selectedItem.job_name} position.`,
-    //   "message"
-    // );
+    await firebaseService.initializeConversation(
+      candidate.id,
+      user_info.account.id,
+      candidate.name,
+      candidate.avatar_url,
+      candidate.email,
+      user_info.account.first_name + " " + user_info.account.last_name,
+      user_info.avatar_url,
+      user_info.account.email
+    );
+    await navigate(`/chat/${candidate.id}_${user_info.account.id}`);
+    firebaseService.sendMessgae(
+      chatId,
+      user_info,
+      `Send invitation for ${selectedItem.job_name} position.`,
+      "message"
+    );
   };
   const navigate = useNavigate();
   return (

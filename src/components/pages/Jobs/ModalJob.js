@@ -15,7 +15,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUserInfo, send_email_with_cv } from "../../../store/UserSlice";
-// import firebaseService from '../../../api-service/firebaseService';
+import firebaseService from '../../../services/firebaseService';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -89,17 +89,17 @@ const ModalJob = ({ job, open, handleClose }) => {
                   SendCV(job, user_info);
                   e.stopPropagation();
                   const chatId = `${user_info.account.id}_${job.id}`;
-                  //   await firebaseService.initializeConversation(
-                  //         user_info.account.id,
-                  //         job.id,
-                  //         user_info.account.first_name + " " + user_info.account.last_name,
-                  //         user_info.avatar_url,
-                  //         user_info.account.email,
-                  //         job.name,
-                  //         job.avatar_url,
-                  //         job.email);
-                  //   await navigate(`/chat/${user_info.account.id}_${job.id}`);
-                  //   firebaseService.sendMessage1(chatId, user_info, `Sent your job application for ${job.job_name} position.`, 'message');
+                    await firebaseService.initializeChat(
+                          user_info.account.id,
+                          job.id,
+                          user_info.account.first_name + " " + user_info.account.last_name,
+                          user_info.avatar_url,
+                          user_info.account.email,
+                          job.name,
+                          job.avatar_url,
+                          job.email);
+                    await navigate(`/chat/${user_info.account.id}_${job.id}`);
+                    firebaseService.pushSendMessage(chatId, user_info, `Sent your job application for ${job.job_name} position.`, 'message');
                 }}
               >
                 Apply
@@ -109,15 +109,15 @@ const ModalJob = ({ job, open, handleClose }) => {
                 variant="contained"
                 color="secondary"
                 onClick={(e) => {
-                  // firebaseService.initializeConversation(
-                  //     user_info.account.id,
-                  //     job.id,
-                  //     user_info.account.first_name + " " + user_info.account.last_name,
-                  //     user_info.avatar_url,
-                  //     user_info.account.email,
-                  //     job.name,
-                  //     job.avatar_url,
-                  //     job.email);
+                  firebaseService.initializeChat(
+                      user_info.account.id,
+                      job.id,
+                      user_info.account.first_name + " " + user_info.account.last_name,
+                      user_info.avatar_url,
+                      user_info.account.email,
+                      job.name,
+                      job.avatar_url,
+                      job.email);
                   navigate(`/chat/${user_info.account.id}_${job.id}`);
                   e.stopPropagation();
                 }}

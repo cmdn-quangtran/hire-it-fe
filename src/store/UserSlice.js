@@ -157,7 +157,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user_infor = action.payload.data;
       state.file = action.payload.data.pdf_file;
-      firebaseService.updateUsersInConversations(
+      firebaseService.updateUsersInChat(
         state.user_infor.account.id,
         `${state.user_infor?.account?.first_name} ${state.user_infor?.account?.last_name}`,
         state.user_infor.avatar_url
@@ -174,7 +174,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user_infor = action.payload.data;
       state.file = action.payload.data.pdf_file;
-      firebaseService.updateUsersInConversations(
+      firebaseService.updateUsersInChat(
         state.user_infor.account.id,
         `${state.user_infor?.account?.first_name} ${state.user_infor?.account?.last_name}`,
         state.user_infor.avatar_url

@@ -112,7 +112,7 @@ const CalendarModal = ({ showModal, handleCloseModal, user }) => {
           recruiter_email: user_info.account.email,
           status: "pending",
         };
-        firebaseService.employeeSendMessage(chatId, user_info, interview, "interview");
+        firebaseService.pushSendMessage(chatId, user_info, interview, "interview");
       }
     }
     if (interview_setup.rejected.match(actionResult)) {
