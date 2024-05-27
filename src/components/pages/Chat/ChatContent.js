@@ -7,7 +7,7 @@ import MessageNav from "./MessageNav";
 import SendMessage from "./SendMessage";
 import firebase from "firebase/compat/app";
 import firebaseService from "../../../services/firebaseService";
-// import MessageSchedule from "./MessageSchedule";
+import MessageSchedule from "./MessageSchedule";
 import MessageLink from "./MessageLink";
 function ChatContent() {
   const { chatId } = useParams();
@@ -83,17 +83,17 @@ function ChatContent() {
                 }
               />
             );
-            // }
-            // else if (message.type === "interview") {
-            // return (
-            //   <MessageSchedule
-            //     key={message.id}
-            //     message={message}
-            //     align={
-            //       user_info?.account.id === message.senderId ? "right" : "left"
-            //     }
-            //   />
-            // );
+            }
+            else if (message.type === "interview") {
+            return (
+              <MessageSchedule
+                key={message.id}
+                message={message}
+                align={
+                  user_info?.account.id === message.senderId ? "right" : "left"
+                }
+              />
+            );
           } else {
             return (
               <MessageLink

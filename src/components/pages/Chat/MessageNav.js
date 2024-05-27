@@ -7,7 +7,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { selectIsAdmin } from "../../../store/AuthSlice";
 import { useSelector } from "react-redux";
 import { Tooltip } from "@mui/material";
-// import CalendarModal from './CalendarModal';
+import CalendarModal from "./CalendarModal";
 function MessageNav({ user }) {
   const isAdmin = useSelector(selectIsAdmin);
   const [showCalendarModal, setShowCalendarModal] = useState(false);
@@ -38,7 +38,11 @@ function MessageNav({ user }) {
       <Tooltip title="Option">
         <MoreHorizIcon className="more-icon" />
       </Tooltip>
-      {/* <CalendarModal showModal={showCalendarModal} handleCloseModal={handleCloseCalendarModal} user={user}/> */}
+      <CalendarModal
+        showModal={showCalendarModal}
+        handleCloseModal={handleCloseCalendarModal}
+        user={user}
+      />
     </Box>
   );
 }

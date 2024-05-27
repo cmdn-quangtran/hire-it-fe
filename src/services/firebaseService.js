@@ -251,12 +251,26 @@ const findChatById = async (chatId, userId) => {
   }
 };
 
+const updateStatusInterview = async (chatId, interviewId, newStatus) => {
+  const messagesRef = firebase.database().ref(`chats/${chatId}/messages`);
+  const query = messagesRef
+    .orderByChild("message/interview_id")
+    .equalTo(interviewId);
+  const snapshot = await query.once("value");
+
+  snapshot.forEach((childSnapshot) => {
+    const messageRef = childSnapshot.ref.child("message");
+    messageRef.update({ status: newStatus });
+  });
+};
+
 const firebaseService = {
   updateUsersInConversations,
   initializeChat,
   employeeSendMessage,
   findManyChat,
   findChatById,
+  updateStatusInterview,
 };
 
 export default firebaseService;
