@@ -8,15 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
 import ContentPasteSearchIcon from "@mui/icons-material/ContentPasteSearch";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import MessageIcon from "@mui/icons-material/Message";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import { logout, selectIsAdmin } from "../../store/AuthSlice";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import EventNoteIcon from "@mui/icons-material/EventNote";
+import { logout, selectIsAdmin } from "../../../store/AuthSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import AvatarImage from "./AvatarImage";
-import { selectFile, selectUserInfo } from "../../store/UserSlice";
+import AvatarImage from "../AvatarImage";
+import { selectFile, selectUserInfo } from "../../../store/UserSlice";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import { Box, Typography } from "@mui/material";
 function Header() {
   const user_info = useSelector(selectUserInfo);
   const file = useSelector(selectFile);
@@ -57,17 +56,11 @@ function Header() {
             {!isAdmin && (
               <>
                 <Nav.Link as={NavLink} to="/resume" className="navbar-text">
-                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                    <PictureAsPdfIcon />
-                    <Typography>Upload your CV</Typography>
-                  </Box>
+                  <PictureAsPdfIcon />
                 </Nav.Link>
                 {file && (
                   <Nav.Link as={NavLink} to="/jobs" className="navbar-text">
-                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                      <ContentPasteSearchIcon />
-                      <Typography>Find Jobs</Typography>
-                    </Box>
+                    <ContentPasteSearchIcon />
                   </Nav.Link>
                 )}
               </>
@@ -91,16 +84,10 @@ function Header() {
               </>
             )}
             <Nav.Link as={NavLink} to="/chat" className="navbar-text">
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <MessageIcon />
-                <Typography> Message</Typography>
-              </Box>
+              <TextsmsIcon />
             </Nav.Link>
             <Nav.Link as={NavLink} to="/calendar" className="navbar-text">
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <CalendarMonthIcon />
-                <Typography>Calendar</Typography>
-              </Box>
+              <EventNoteIcon />
             </Nav.Link>
             <AvatarImage avatar_url={avatar} />
             <NavDropdown

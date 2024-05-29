@@ -1,9 +1,13 @@
 // base scss
+@import "base/base.scss";
 @import "base/_layout";
 @import "base/_variables";
+@import "base/utilities.scss";
+@import "base/typography";
 
 @import "components/_home";
-@import "components/login";
+// @import "components/login";
+@import "components//_about";
 @import "components/_signup";
 @import "components/_confirmsignup";
 @import "components/_profile";
@@ -22,3 +26,4 @@
 @import "components/_verifyinformation";
 @import "components/_modalcalendar";
 @import "components/_schedulemessage";
+@import "components/footer";

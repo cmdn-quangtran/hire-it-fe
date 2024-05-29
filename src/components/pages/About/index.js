@@ -1,52 +1,62 @@
 import * as React from "react";
-import { Grid, Typography } from "@mui/material";
-import { styled } from "@mui/system";
+import { Grid, Typography, Image, Link } from "@mui/material";
+// import { styled } from "@mui/system";
 
-const AboutContainer = styled("div")(({ theme }) => ({
-  margin: theme.spacing(2),
-}));
-
-const Paragraph = styled("p")(({ theme }) => ({
-  marginBottom: theme.spacing(2),
-}));
-
-const Avatar = styled("div")(({ theme }) => ({
-  width: theme.spacing(30),
-  height: theme.spacing(30),
-  border: "4px solid #fff",
-  boxShadow: "1px 2px 8px rgba(0, 0, 0, 0.15)",
-}));
-
-const Root = styled("div")({
-  flexGrow: 1,
-});
-
-const Cap = styled("img")({
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-});
-
-function MyComponent() {
+const About = () => {
   return (
-    <Root>
-      <AboutContainer>
-        <Grid container>
-          <Grid item xs={12} sm={6}>
-            <Avatar />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <Typography variant="h4">Hello, I'm John Doe</Typography>
-            <Paragraph>
-              I'm a full-stack developer specialized in building high-quality
-              websites and applications.
-            </Paragraph>
-            <Cap src="cap.jpg" alt="Cap" />
-          </Grid>
-        </Grid>
-      </AboutContainer>
-    </Root>
-  );
-}
+    <>
+      <div className="content-column col-lg-6 col-md-12 col-sm-12 order-2">
+        <div className="inner-column " data-aos="fade-left">
+          <div className="sec-title">
+            <h2>Millions of Jobs. Find the one that suits you.</h2>
+            <div className="text">
+              Search all the open positions on the web. Get your own
+              personalized salary estimate. Read reviews on over 600,000
+              companies worldwide.
+            </div>
+          </div>
+          <ul className="list-style-one">
+            <li>Bring to the table win-win survival</li>
+            <li>Capitalize on low hanging fruit to identify</li>
+            <li>But I must explain to you how all this</li>
+          </ul>
+          <Link href="/register" className="theme-btn btn-style-one bg-blue">
+            <span className="btn-title">Get Started</span>
+          </Link>
+        </div>
+      </div>
+      {/* End .col about left content */}
 
-export default MyComponent;
+      <div className="image-column col-lg-6 col-md-12 col-sm-12">
+        <figure className="image" data-aos="fade-right">
+          {/* <Image
+            width={600}
+            height={600}
+            src="/images/resource/image-2.jpg"
+            alt="about"
+          /> */}
+        </figure>
+
+        {/* <!-- Count Employers --> */}
+        <div className="count-employers " data-aos="flip-right">
+          <div className="check-box">
+            <span className="flaticon-tick"></span>
+          </div>
+          <span className="title">300k+ Employers</span>
+          <figure className="image">
+            {/* <Image
+              width={234}
+              height={61}
+              layout="responsive"
+              // src="/images/resource/multi-logo.png"
+              alt="resource"
+            /> */}
+          </figure>
+        </div>
+      </div>
+      {/* <!-- Image Column --> */}
+    </>
+  );
+};
+
+export default About;

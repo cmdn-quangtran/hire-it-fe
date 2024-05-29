@@ -49,7 +49,7 @@ function CandidateSignUp() {
           <div className="signup-container">
             <div className="form">
               <Form className="signup-form" onSubmit={handle_signup}>
-                <h1>Sign Up Now</h1>
+                <h1>Sign Up</h1>
                 <Form.Group
                   as={Row}
                   className="mb-1"

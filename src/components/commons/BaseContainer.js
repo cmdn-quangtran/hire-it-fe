@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
+import Footer from "./Footer/index";
 import Header from "./Header";
+// import DefaulHeader from "../commons/Header/index";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAccount } from "../../store/AuthSlice";
@@ -21,6 +22,7 @@ function BaseContainer() {
   }, [account, navigate]);
   return (
     <div>
+      {/* <DefaulHeader /> */}
       <Header showLinks={true} />
       <div className="hireit-full-height-container">
         <div className="hireit-full-width">

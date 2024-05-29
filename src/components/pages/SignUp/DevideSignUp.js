@@ -1,33 +1,26 @@
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
-import { makeStyles } from "@mui/styles";
-import { Button, Typography, Grid } from "@mui/material";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: "100vh",
-  },
-  title: {
-    marginBottom: theme.spacing(2),
-  },
-  link: {
-    margin: theme.spacing(1),
-    textDecoration: "none",
-  },
-}));
+import { Link } from "react-router-dom";
+import {
+  Button,
+  Typography,
+  Grid,
+  Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+} from "@mui/material";
 
 const DevideSignUp = () => {
-  const classes = useStyles();
   return (
-    <div className={classes.container}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+      }}
+    >
       <Grid container spacing={2} justifyContent="center">
         <Grid item xs={12} sm={6} md={3}>
           <Card sx={{ maxWidth: 300 }}>
@@ -51,7 +44,7 @@ const DevideSignUp = () => {
                 variant="contained"
                 color="info"
                 size="large"
-                className={classes.link}
+                sx={{ margin: 1, textDecoration: "none" }}
               >
                 Recruiter
               </Button>
@@ -80,7 +73,7 @@ const DevideSignUp = () => {
                 variant="contained"
                 color="info"
                 size="large"
-                className={classes.link}
+                sx={{ margin: 1, textDecoration: "none" }}
               >
                 Candidate
               </Button>
