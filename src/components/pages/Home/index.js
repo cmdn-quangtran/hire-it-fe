@@ -1,10 +1,17 @@
 import HomeImage from "./HomeImage";
 import { Row, Col } from "react-bootstrap";
+import ChatbotModal from "../ChatBot/ChatBot";
 
 function Home() {
   return (
     <div className="home-container">
       <Row>
+        <div className="App">
+          <header className="App-header">
+            <h1>Chatbot</h1>
+            <ChatbotModal />
+          </header>
+        </div>
         <Col
           md={6}
           className="d-flex align-items-center justify-content-center"
