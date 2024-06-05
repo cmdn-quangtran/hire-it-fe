@@ -79,14 +79,20 @@ function Header() {
                   to="/recruiter/upload-jobs"
                   className="navbar-text"
                 >
-                  <AddCircleOutlineIcon />
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <AddCircleOutlineIcon />
+                    <Typography>Upload Job</Typography>
+                  </Box>
                 </Nav.Link>
                 <Nav.Link
                   as={NavLink}
                   to="/candidates/search"
                   className="navbar-text"
                 >
-                  <AssignmentIndIcon />
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <AssignmentIndIcon />
+                    <Typography>Candidate</Typography>
+                  </Box>
                 </Nav.Link>
               </>
             )}

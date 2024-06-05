@@ -84,7 +84,7 @@ const ModalCandidate = ({ candidate, open, handleClose }) => {
     setModalOpenJob(false);
     handleClose();
     const chatId = `${candidate.id}_${user_info.account.id}`;
-    await firebaseService.initializeConversation(
+    await firebaseService.initializeChat(
       candidate.id,
       user_info.account.id,
       candidate.name,
@@ -160,20 +160,20 @@ const ModalCandidate = ({ candidate, open, handleClose }) => {
                 variant="contained"
                 color="secondary"
                 onClick={(e) => {
-                  //   firebaseService.initializeConversation(
-                  //     candidate.id,
-                  //     user_info.account.id,
-                  //     candidate.name,
-                  //     candidate.avatar_url,
-                  //     candidate.email,
-                  //     user_info.account.first_name +
-                  //       " " +
-                  //       user_info.account.last_name,
-                  //     user_info.avatar_url,
-                  //     user_info.account.email
-                  //   );
-                  //   navigate(`/chat/${candidate.id}_${user_info.account.id}`);
-                  //   e.stopPropagation();
+                  firebaseService.initializeChat(
+                    candidate.id,
+                    user_info.account.id,
+                    candidate.name,
+                    candidate.avatar_url,
+                    candidate.email,
+                    user_info.account.first_name +
+                      " " +
+                      user_info.account.last_name,
+                    user_info.avatar_url,
+                    user_info.account.email
+                  );
+                  navigate(`/chat/${candidate.id}_${user_info.account.id}`);
+                  e.stopPropagation();
                 }}
               >
                 Message
