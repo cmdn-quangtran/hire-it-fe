@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Grid, Typography, Image, Link } from "@mui/material";
+import { Link } from "@mui/material";
 // import { styled } from "@mui/system";
 
 const About = () => {

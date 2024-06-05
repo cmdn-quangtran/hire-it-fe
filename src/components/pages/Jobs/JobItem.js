@@ -76,7 +76,7 @@ const JobItem = ({ job, onJobClick }) => {
           <Button
             className="btn-apply"
             variant="contained"
-            color="primary"
+            color="success"
             onClick={async (e) => {
               SendCV(job, user_info);
               e.stopPropagation();
@@ -107,7 +107,7 @@ const JobItem = ({ job, onJobClick }) => {
           <Button
             className="btn-message"
             variant="contained"
-            color="secondary"
+            color="primary"
             onClick={(e) => {
               e.stopPropagation();
 

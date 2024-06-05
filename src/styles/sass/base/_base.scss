@@ -45,18 +45,6 @@ body {
   font-style: normal;
 }
 
-a {
-  text-decoration: none;
-  cursor: pointer;
-}
-
-a:hover,
-a:focus,
-a:visited {
-  text-decoration: none;
-  outline: none;
-}
-
 h1,
 h2,
 h3,
@@ -86,7 +74,6 @@ button {
   min-width: auto;
 }
 
-p,
 .text {
   font-size: 15px;
   color: #696969;

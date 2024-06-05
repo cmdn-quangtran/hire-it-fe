@@ -56,8 +56,6 @@ const ChatbotModal = () => {
         }
       );
 
-      console.log("-----------", response.data.answer);
-
       setChat([...chat, { user: message, bot: response.data.answer }]);
     } catch (error) {
       console.error("Error sending message:", error);

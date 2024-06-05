@@ -6,6 +6,7 @@ import {
   Box,
   TextField,
   MenuItem,
+  TextareaAutosize,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -167,7 +168,7 @@ function TurnOnJob() {
               value={skills}
               onChange={(e) => setSkills(e.target.value)}
               required
-              sx={{ display: "none", marginBottom: "1rem" }}
+              sx={{ marginBottom: "1rem", maxWidth: "100%" }}
             />
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
               <Button variant="contained" onClick={handleCloseModal}>
