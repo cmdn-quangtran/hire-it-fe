@@ -1,8 +1,9 @@
 import axios from "axios";
 import store from "../store";
 
-const baseURL =
-  process.env.REACT_APP_API_URL || process.env.REACT_APP_PROD_API_URL;
+const baseURL = process.env.REACT_APP_PROD_API_URL;
+
+console.log("url----- ", baseURL);
 const httpRequest = axios.create({
   baseURL: baseURL,
   headers: {
