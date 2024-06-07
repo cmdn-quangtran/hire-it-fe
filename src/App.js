@@ -18,6 +18,7 @@ import UploadFormJob from "./components/pages/UploadJobs/UploadFormJob";
 import SearchCandidate from "./components/pages/Candidate/SearchCandidate";
 import ChatApp from "./components/pages/Chat";
 import Calendar from "./components/pages/Calendar";
+import DifyChatbot from "./components/pages/ChatBot/ChatBot";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme();
@@ -58,6 +59,7 @@ function App() {
           <Route path="confirmSignUp" element={<ConfirmSignUp />}></Route>
         </Routes>
       </BrowserRouter>
+      <DifyChatbot />
     </ThemeProvider>
   );
 }
